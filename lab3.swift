@@ -50,7 +50,7 @@ class User {
     }
 }
 
-func printVideoMetadata(_ metadata: VideoMetadata) {
+func printVideoMetadataFormattedDate(_ metadata: VideoMetadata) {
     print("Title: \(metadata.title)")
     print("Description: \(metadata.description)")
     print("Duration: \(metadata.duration) seconds")
@@ -59,12 +59,20 @@ func printVideoMetadata(_ metadata: VideoMetadata) {
     print("Upload Date: \(dateFormatter.string(from: metadata.uploadDate))")
 }
 
-func printVideoDetails(_ video: Video) {
+func formatLikes(_ likes: Int) -> String {
+    if likes >= 1000 {
+        return "\(likes / 1000)k"
+    } else {
+        return "\(likes)"
+    }
+}
+
+func printVideoDetailsFormattedLikes(_ video: Video) {
     print("ID: \(video.id)")
-    printVideoMetadata(video.metadata)
+    printVideoMetadataFormattedDate(video.metadata)
     print("Type: \(video.type)")
     print("Views: \(video.views)")
-    print("Likes: \(video.likes)")
+    print("Likes: \(formatLikes(video.likes))")
     print("Dislikes: \(video.dislikes)")
     print("-------------------------")
 }
@@ -73,7 +81,7 @@ let videoMetadata1 = VideoMetadata(title: "Learn Swift Programming", description
 let video1 = Video(id: "abc123", metadata: videoMetadata1, type: .tutorial, views: 10000, likes: 500, dislikes: 10)
 
 let videoMetadata2 = VideoMetadata(title: "Vlog: A Day in New York City", description: "Join me as I explore the bustling streets of New York City.", duration: 1800, uploadDate: Date())
-let video2 = Video(id: "def456", metadata: videoMetadata2, type: .vlog, views: 5000, likes: 200, dislikes: 5)
+let video2 = Video(id: "def456", metadata: videoMetadata2, type: .vlog, views: 5000, likes: 2000000, dislikes: 5)
 
 let channel = Channel(id: "channel123", name: "Tech Tutorials", subscribers: 100000)
 channel.videos = [video1, video2]
@@ -84,5 +92,5 @@ user.subscriptions.append(channel)
 let feed: [Video] = [video1, video2]
 
 for video in feed {
-    printVideoDetails(video)
+    printVideoDetailsFormattedLikes(video)
 }
