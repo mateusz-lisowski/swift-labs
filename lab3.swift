@@ -94,3 +94,21 @@ let feed: [Video] = [video1, video2]
 for video in feed {
     printVideoDetailsFormattedLikes(video)
 }
+
+struct VideoData: Codable {
+    let videos: [Video]
+}
+
+guard let fileURL = Bundle.main.url(forResource: "feed", withExtension: "json") else {
+    fatalError("Couldn't find file 'feed.json' in the main bundle.")
+}
+
+do {
+    let jsonData = try Data(contentsOf: fileURL)
+    let videoData = try JSONDecoder().decode(VideoData.self, from: jsonData)
+    for video in videoData.videos {
+        printVideoDetailsFormattedLikes(video)
+    }
+} catch {
+    print("Error decoding JSON: \(error)")
+}
