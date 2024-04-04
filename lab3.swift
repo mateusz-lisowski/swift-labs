@@ -1,3 +1,6 @@
+import Foundation
+
+
 enum VideoType {
     case movie
     case music
@@ -47,6 +50,25 @@ class User {
     }
 }
 
+func printVideoMetadata(_ metadata: VideoMetadata) {
+    print("Title: \(metadata.title)")
+    print("Description: \(metadata.description)")
+    print("Duration: \(metadata.duration) seconds")
+    let dateFormatter = DateFormatter()
+    dateFormatter.dateFormat = "MMM d, yyyy"
+    print("Upload Date: \(dateFormatter.string(from: metadata.uploadDate))")
+}
+
+func printVideoDetails(_ video: Video) {
+    print("ID: \(video.id)")
+    printVideoMetadata(video.metadata)
+    print("Type: \(video.type)")
+    print("Views: \(video.views)")
+    print("Likes: \(video.likes)")
+    print("Dislikes: \(video.dislikes)")
+    print("-------------------------")
+}
+
 let videoMetadata1 = VideoMetadata(title: "Learn Swift Programming", description: "In this tutorial, we'll learn the basics of Swift programming language.", duration: 1200, uploadDate: Date())
 let video1 = Video(id: "abc123", metadata: videoMetadata1, type: .tutorial, views: 10000, likes: 500, dislikes: 10)
 
@@ -58,3 +80,9 @@ channel.videos = [video1, video2]
 
 let user = User(id: "user123", username: "example_user")
 user.subscriptions.append(channel)
+
+let feed: [Video] = [video1, video2]
+
+for video in feed {
+    printVideoDetails(video)
+}
