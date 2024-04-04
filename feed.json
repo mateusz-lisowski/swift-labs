@@ -1,0 +1,30 @@
+{
+  "videos": [
+    {
+      "id": "abc123",
+      "metadata": {
+        "title": "Learn Swift Programming",
+        "description": "In this tutorial, we'll learn the basics of Swift programming language.",
+        "duration": 1200,
+        "uploadDate": "2024-02-29T12:00:00Z"
+      },
+      "type": "tutorial",
+      "views": 10000,
+      "likes": 413000,
+      "dislikes": 10
+    },
+    {
+      "id": "def456",
+      "metadata": {
+        "title": "Vlog: A Day in New York City",
+        "description": "Join me as I explore the bustling streets of New York City.",
+        "duration": 1800,
+        "uploadDate": "2024-02-29T12:30:00Z"
+      },
+      "type": "vlog",
+      "views": 5000,
+      "likes": 200,
+      "dislikes": 5
+    }
+  ]
+}
